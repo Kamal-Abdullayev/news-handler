@@ -1,0 +1,7 @@
+spring:
+  minio:
+    bucket:
+      name: demo.product.image
+    access-key: test_user
+    secret-key: test_password
+    url: http://localhost:9000
