@@ -18,7 +18,10 @@ docker compose up -d
 - Refer to the system_architecture.png file for the system design
 - You can find a Postman collection in the demo-project.postman_collection.json file
 
-
+### Project Requirements:
+- Java 17
+- Spring Boot 2
+- No usage of hibaranet 
 
 ### Some explanations:
 
