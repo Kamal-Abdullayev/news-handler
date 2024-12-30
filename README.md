@@ -8,7 +8,7 @@ This is a project that provides CRUD operations for news and additionally allows
 ![Architecture Diagram](system_architecture.png)
 
 ## Steps to Set Up the Project:
-- Add your secret-key to the application.yml file
+- Add your `secret-key` to the `application.yml` file. You can get it from the [NewsAPI website](https://newsapi.org/).  
 
 Use the following command to run the Docker setup:
 ```
