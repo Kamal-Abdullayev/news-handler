@@ -7,6 +7,17 @@ This is a project that provides CRUD operations for news and additionally allows
 
 ![Architecture Diagram](system_architecture.png)
 
+## 🚀 Tech Stack
+- **Java 17**
+- **Spring Boot 2**
+- **H2 in-memory database**
+- **Minio**
+- **Gradle**
+- **Prometheus**
+- **Grafana**
+- **Docker**
+
+
 ## Steps to Set Up the Project:
 - Add your `secret-key` to the `application.yml` file. You can get it from the [NewsAPI website](https://newsapi.org/).  
 
@@ -21,7 +32,7 @@ docker compose up -d
 ### Project Requirements:
 - Java 17
 - Spring Boot 2
-- No usage of hibaranet 
+- No usage of hibernate 
 
 ### Some explanations:
 
@@ -38,7 +49,7 @@ docker compose up -d
     // The getNewsByTitle() method first checks if the news exists in the database.
     If it’s not found, it sends a request to the external API. Additionally,
     caching is used, and the cache is checked first. If the news is not found in the
-    cache, it queries the database.There’s also a scheduler to clean the cache periodically.
+    cache, it queries the database. There’s also a scheduler to clean the cache periodically.
     Most properties are configurable through the application.properties file.
     
     // I added an index to the news title column for better performance. Since it's
@@ -52,24 +63,24 @@ docker compose up -d
     Since this is a demo project, I used Lombok to improve readability and keep the
     code clean. Some developers avoid Lombok because it can cause build-time issues.
     
-    // Why no interface in the service layer?
+    // Why is there no interface in the service layer?
     Since this is a simple demo project, I felt that adding interfaces was unnecessary.
     Interfaces are typically added for flexibility with future implementations,
     but in this project’s context, they seemed extraneous. Additionally, using interfaces
-    without a clear purpose can sometimes be outdated practice.
+    without a clear purpose can sometimes be an outdated practice.
     
-    // Why do Error codes not in the constant file or the enum?
+    // Why are Error codes not in the constant file or the enum?
     I originally thought it would be better to keep the messages static,
     but then I decided to make them dynamic this time. I also want to include the field
     name in some cases in the exception message. I believe the current approach isn't the
     best solution, and I don't want to store the messages in a constants file and then
-    append the field name like: NEWS_NOT_FOUND_EXCEPTION + newsName
+    append the field name like NEWS_NOT_FOUND_EXCEPTION + newsName
 
-### What Could Be Done else?
+### What Could Be Done Else?
     - Unit and integration tests could be written
     
     - To manage sensitive properties securely, a solution like HashiCorp Vault or
-      an .env file could be implemented. However, to keep the project’s complexity
+      a .env file could be implemented. However, to keep the project’s complexity
       manageable and testing straightforward, I opted not to add these.
     
     - OpenAPI (Swagger) could be added. However, I ran into some issues while trying to add it.
