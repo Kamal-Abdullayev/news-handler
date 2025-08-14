@@ -557,4 +557,5 @@ class NewsServiceTest {
                 .isInstanceOf(IncompleteProcessException.class)
                 .hasMessageContaining("Error downloading image");
     }
+
 }
