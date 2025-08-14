@@ -13,4 +13,5 @@ public class NewsRepositoryQueryConstant {
 
      public static final String DELETE_NEWS_BY_ID = "DELETE FROM news WHERE id = ?";
      public static final String DELETE_NEWS_BY_TITLE = "DELETE FROM news WHERE title = ?";
+     public static final String FIND_NEWS_BY_DATE_RANGE = "SELECT * FROM news WHERE published_at BETWEEN ? AND ? ORDER BY published_at DESC";
 }
