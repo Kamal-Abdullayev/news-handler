@@ -33,3 +33,6 @@ build/
 .vscode/
 
 logs/
+### Project-local Maven settings (bypass corporate Artifactory)
+.mvn/settings.xml
+.mvn/maven.config

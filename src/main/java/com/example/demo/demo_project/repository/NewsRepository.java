@@ -94,7 +94,7 @@ public class NewsRepository {
 
     public Optional<News> findByTitle(String title) {
         List<News> results = jdbcTemplate.query(NewsRepositoryQueryConstant.FIND_NEWS_BY_TITLE,
-                new Object[]{title}, newsRowMapper);
+                newsRowMapper, title);
 
         return results.stream().findFirst();
     }
@@ -104,7 +104,7 @@ public class NewsRepository {
         try {
             return Optional.ofNullable(jdbcTemplate.queryForObject(
                     NewsRepositoryQueryConstant.FIND_NEWS_BY_ID, newsRowMapper, id));
-        } catch (EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException _) {
             throw new ResourceNotFoundException("News not found with id " + id);
         }
     }

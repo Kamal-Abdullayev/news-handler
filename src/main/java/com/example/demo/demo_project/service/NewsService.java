@@ -29,8 +29,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -253,7 +251,7 @@ public class NewsService {
                     .bucket(minioConfigConstant.getBucket().getName())
                     .object(imagePath)
                     .stream(new ByteArrayInputStream(imageContent),
-                            imageContent.length, -1)
+                            (long) imageContent.length, -1L)
                     .build()
             );
             log.info("Image successfully saved to MinIO bucket: {}", minioConfigConstant.getBucket());
@@ -270,8 +268,7 @@ public class NewsService {
             log.error("Server error while uploading image '{}': {}", imagePath, e.getMessage());
             throw new IncompleteProcessException("Upload failed due to a server error.", e);
 
-        } catch (IOException | InternalException | InvalidKeyException |
-                 InvalidResponseException | NoSuchAlgorithmException | XmlParserException e) {
+        } catch (MinioException e) {
             log.error("General error while uploading image '{}': {}", imagePath, e.getMessage());
             throw new IncompleteProcessException("An error occurred while uploading the image.", e);
         }
@@ -304,9 +301,6 @@ public class NewsService {
         } catch (MinioException | IOException e) {
             log.error("Error occurred while retrieving the image \"'{}'\": {}", imagePath, e.getMessage());
             throw new IncompleteProcessException("Error occurred while retrieving the image", e);
-        } catch (NoSuchAlgorithmException | InvalidKeyException e) {
-            log.error("Error while uploading image to \"'{}'\": {}", imagePath, e.getMessage());
-            throw new IncompleteProcessException("An error occurred while uploading the image.", e);
         }
     }
 

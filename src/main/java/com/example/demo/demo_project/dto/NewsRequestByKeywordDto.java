@@ -1,6 +1,6 @@
 package com.example.demo.demo_project.dto;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public record NewsRequestByKeywordDto(
         @NotBlank
