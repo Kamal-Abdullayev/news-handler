@@ -36,3 +36,6 @@ logs/
 ### Project-local Maven settings (bypass corporate Artifactory)
 .mvn/settings.xml
 .mvn/maven.config
+
+### Grafana container runtime state (created by docker compose volume mount)
+data/grafana/
