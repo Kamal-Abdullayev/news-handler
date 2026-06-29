@@ -130,5 +130,10 @@ public class NewsRepository {
         return rowsAffected > 0;
     }
 
+    public List<News> findNewsByDateRange(java.time.LocalDateTime startDate, java.time.LocalDateTime endDate) {
+        return jdbcTemplate.query(NewsRepositoryQueryConstant.FIND_NEWS_BY_DATE_RANGE,
+                new Object[]{java.sql.Timestamp.valueOf(startDate), java.sql.Timestamp.valueOf(endDate)}, 
+                newsRowMapper);
+    }
 
 }
